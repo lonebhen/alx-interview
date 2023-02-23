@@ -7,25 +7,28 @@
 
 def validUTF8(data):
     """Validate utf-8 encoding"""
-    num_bytes = 0
+    count = 0
 
-    for d in data:
-        if num_bytes == 0:
-            if d >> 7 == 0b0:
-                continue
-            elif d >> 5 == 0b110:
-                num_bytes = 1
-            elif d >> 4 == 0b1110:
-                num_bytes = 2
-            elif d >> 3 == 0b11110:
-                num_bytes = 3
-            else:
+    for digit in data:
+        binary = bin(digit).replace('0b', '').rjust(8, '0')[-8:]
+
+        if count == 0:
+            if binary.startswith('110'):
+                count = 1
+            if binary.startswith('1110'):
+                count = 2
+            if binary.startswith('11110'):
+                count = 3
+            if binary.startswith('10'):
                 return False
         else:
-            if d >> 6 != 0b10:
+            if not binary.startswith('10'):
                 return False
-            num_bytes -= 1
-    return num_bytes == 0
+            count -= 1
+
+    if count != 0:
+        return False
+    return True
 
 
 # data = [229, 65, 127, 256]
