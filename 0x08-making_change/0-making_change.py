@@ -11,7 +11,7 @@
 def makeChange(coins, total):
     '''Making change'''
 
-    if total < 0:
+    if total <= 0:
         return -1
 
     if coins is None or len(coins) == 0:
