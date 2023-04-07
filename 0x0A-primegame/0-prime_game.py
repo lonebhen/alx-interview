@@ -12,7 +12,7 @@ def is_prime(n):
     for i in range(2, n):
         if n % i == 0:
             return False
-        return True
+    return True
 
 
 def delete_nums(n, nums):
@@ -32,7 +32,6 @@ def isWinner(x, nums):
     nums.sort()
     Maria = 0
     Ben = 0
-    winner = False
 
     for pick in range(x):
         nums2 = list(range(1, nums[pick] + 1))
