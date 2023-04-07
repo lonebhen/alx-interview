@@ -30,6 +30,7 @@ def isWinner(x, nums):
     '''
 
     nums.sort()
+    winner = False
     Maria = 0
     Ben = 0
 
