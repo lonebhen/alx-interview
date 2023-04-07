@@ -29,3 +29,13 @@ def island_perimeter(grid):
                     adj_cells += 1
                 perimeter += adj_cells
     return perimeter
+
+
+grid = [
+        [0, 0, 0, 0, 0, 0],
+        [0, 1, 0, 0, 0, 0],
+        [0, 1, 0, 0, 0, 0],
+        [0, 1, 1, 1, 0, 0],
+        [0, 0, 0, 0, 0, 0]
+    ]
+print(island_perimeter(grid))
