@@ -3,28 +3,15 @@
 
 """
 Prime Game
+Let see who wins
 """
 
 
-# def is_prime(n):
-#     '''Check if a number picked is prime'''
-
-#     for i in range(2, n):
-#         if n % i == 0:
-#             return False
-#     return True
-
-
-# def delete_nums(n, nums):
-#     '''delete numbers by assigning it to zero'''
-
-#     for i in range(len(nums)):
-#         if nums[i] % n == 0:
-#             nums[i] = 0
-
-
 def isWinner(x, nums):
-    """Solves Prime Game"""
+    """
+    x = number of picks
+    nums = list of integers left to pick from
+    """
     if not nums or x < 1:
         return None
     n = max(nums)
