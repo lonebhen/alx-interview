@@ -32,6 +32,7 @@ def isWinner(x, nums):
     nums.sort()
     Maria = 0
     Ben = 0
+    winner = False
 
     for pick in range(x):
         nums2 = list(range(1, nums[pick] + 1))
