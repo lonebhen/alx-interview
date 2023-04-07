@@ -6,48 +6,69 @@ Prime Game
 """
 
 
+def is_prime(n):
+    '''Check if a number picked is prime'''
+
+    for i in range(2, n):
+        if n % i == 0:
+            return False
+    return True
+
+
+def delete_nums(n, nums):
+    '''delete numbers by assigning it to zero'''
+
+    for i in range(len(nums)):
+        if nums[i] % n == 0:
+            nums[i] = 0
+
+
 def isWinner(x, nums):
     '''
-    x = pick
-    nums = list of integers left to pick from
+    x = number of picks
+    nums = array of numbers
     '''
-    def isPrime(n):
-        '''check if picked number is prime'''
-        if n <= 1:
-            return False
-        for i in range(2, int(n**0.5)+1):
-            if n % i == 0:
-                return False
-        return True
 
-    def playGame(nums, player):
-        '''who plays?'''
-        if not any(isPrime(n) for n in nums):
-            return player
+    nums.sort()
+    winner = False
+    Maria = 0
+    Ben = 0
 
-        for n in nums:
-            if isPrime(n):
-                newNums = [i for i in nums if i % n != 0]
-                to_play = "Maria" if player == "Ben" else "Ben"
-                winner = playGame(newNums, to_play)
-                if winner == player:
-                    return player
-
-        return "Maria" if player == "Ben" else "Ben"
-
-    mariaWins = 0
-    benWins = 0
-
-    for n in nums:
-        winner = playGame(list(range(1, n+1)), "Maria")
-        if winner == "Maria":
-            mariaWins += 1
-        elif winner == "Ben":
-            benWins += 1
-
-    if mariaWins > benWins:
-        return "Maria"
-    elif benWins > mariaWins:
-        return "Ben"
-    else:
+    nums.sort()
+    winner = False
+    Maria = 0
+    Ben = 0
+    for game in range(x):
+        # print("game# ", game+1)
+        nums2 = list(range(1, nums[game] + 1))
+        # print("nums: ", nums2)
+        turn = 0
+        while True:
+            """
+            # uncomment to monitor turns
+            if turn % 2 != 0:
+                print("Ben turn ")
+            else:
+                print("Maria turn ")
+            """
+            change = False
+            for i, n in enumerate(nums2):
+                # print("n: ", n, "i: ", i)
+                if n > 1 and is_prime(n):
+                    delete_nums(n, nums2)
+                    change = True
+                    turn += 1
+                    break
+            # print("movement: ", nums2)
+            if change is False:
+                break
+        if turn % 2 != 0:
+            Maria += 1
+        else:
+            Ben += 1
+        # print("Maria: {}, Ben: {}".format(Maria, Ben))
+    if Maria == Ben:
         return None
+    if Maria > Ben:
+        return "Maria"
+    return "Ben"
