@@ -34,10 +34,6 @@ def isWinner(x, nums):
     Maria = 0
     Ben = 0
 
-    nums.sort()
-    winner = False
-    Maria = 0
-    Ben = 0
     for game in range(x):
         # print("game# ", game+1)
         nums2 = list(range(1, nums[game] + 1))
